@@ -9,23 +9,51 @@ import java.net.URL;
  * Created by Woonho on 16. 8. 10..
  */
 public class SummonerRequest {
-    final static String appKey = "953974d9-cbc9-418f-8d9c-2b208af385e1";
-    final static String summonerUrl = "https://kr.api.pvp.net/api/lol/kr/v1.4/summoner/by-name/";
-    LttMainActivity ltt = new LttMainActivity();
-    public String urlString = summonerUrl + ltt.editText.getText().toString() + "?api_key=" + appKey;
 
-    URL url;
+    int id;
+    int profileIconId;
+    int summonerLevel;
+    int revisionDate;
+    String name;
 
-    {
-        try {
-            url = new URL(urlString);
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public int getId() {
+        return id;
     }
 
+    public int getProfileIconId() {
+        return profileIconId;
+    }
+
+    public int getSummonerLevel() {
+        return summonerLevel;
+    }
+
+    public int getRevisionDate() {
+        return revisionDate;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setProfileIconId(int profileIconId) {
+        this.profileIconId = profileIconId;
+    }
+
+    public void setSummonerLevel(int summonerLevel) {
+        this.summonerLevel = summonerLevel;
+    }
+
+    public void setRevisionDate(int revisionDate) {
+        this.revisionDate = revisionDate;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
 }
