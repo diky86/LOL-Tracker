@@ -8,15 +8,15 @@ import java.net.URL;
 /**
  * Created by Woonho on 16. 8. 10..
  */
-public class SummonerRequest {
+public class SummonerResponse {
 
-    int id;
+    String id;
     int profileIconId;
     int summonerLevel;
     int revisionDate;
     String name;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
@@ -36,7 +36,7 @@ public class SummonerRequest {
         return name;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

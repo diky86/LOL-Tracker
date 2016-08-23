@@ -6,37 +6,52 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.concurrent.ExecutionException;
 
 public class LttMainActivity extends AppCompatActivity {
-    Button serachButton;
+    Button searchButton;
     EditText editText;
+    String id;
+    TextView tv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        serachButton = (Button)findViewById(R.id.search_button);
+        searchButton = (Button)findViewById(R.id.search_button);
         editText = (EditText)findViewById(R.id.editText);
-
-
-
-        final String appKey = "953974d9-cbc9-418f-8d9c-2b208af385e1";
-        final String summonerUrl = "https://kr.api.pvp.net/api/lol/kr/v1.4/summoner/by-name/";
-//        final String urlString = summonerUrl + editText.getText().toString() + "?api_key=" + appKey;
-
-
-
-        serachButton.setOnClickListener(new View.OnClickListener() {
+        tv = (TextView)findViewById(R.id.result_view);
+        searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), PopupAcitivy.class);
-//                intent.putExtra("id", editText.getText().toString());
-                String urlString = summonerUrl + editText.getText().toString() + "?api_key=" + appKey;
-                intent.putExtra("id", urlString);
-                startActivity(intent);
-                finish();
+//                getLOLId(v);
+//                Intent intent = new Intent(getApplicationContext(), PopupAcitivy.class);
+//                String urlString = summonerUrl + id + "?api_key=" + appKey;
+//                intent.putExtra("url", urlString);
+//                startActivity(intent);
+                getLOLId();
             }
         });
     }
+
+    public void getLOLId() {
+        id = editText.getText().toString();
+
+        OpenLOLAPITask t = new OpenLOLAPITask();
+
+        try {
+            SummonerResponse sRes = t.execute(id).get();
+            System.out.println("ID = " + sRes.getId());
+            tv.setText(sRes.getId());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
 }
