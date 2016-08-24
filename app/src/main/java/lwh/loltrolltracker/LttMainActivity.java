@@ -44,7 +44,7 @@ public class LttMainActivity extends AppCompatActivity {
         try {
             SummonerResponse sRes = t.execute(id).get();
             System.out.println("ID = " + sRes.getId());
-            tv.setText(sRes.getId());
+//            tv.setText(sRes.getId());
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {

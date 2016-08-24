@@ -10,13 +10,13 @@ import java.net.URL;
  */
 public class SummonerResponse {
 
-    String id;
+    long id;
     int profileIconId;
-    int summonerLevel;
-    int revisionDate;
+    long summonerLevel;
+    long revisionDate;
     String name;
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
@@ -24,11 +24,11 @@ public class SummonerResponse {
         return profileIconId;
     }
 
-    public int getSummonerLevel() {
+    public long getSummonerLevel() {
         return summonerLevel;
     }
 
-    public int getRevisionDate() {
+    public long getRevisionDate() {
         return revisionDate;
     }
 
@@ -36,7 +36,7 @@ public class SummonerResponse {
         return name;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -44,11 +44,11 @@ public class SummonerResponse {
         this.profileIconId = profileIconId;
     }
 
-    public void setSummonerLevel(int summonerLevel) {
+    public void setSummonerLevel(long summonerLevel) {
         this.summonerLevel = summonerLevel;
     }
 
-    public void setRevisionDate(int revisionDate) {
+    public void setRevisionDate(long revisionDate) {
         this.revisionDate = revisionDate;
     }
 
