@@ -1,6 +1,7 @@
 package lwh.loltrolltracker;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -33,7 +34,7 @@ public class OpenLOLAPIClient {
             JSONObject json = new JSONObject(getStringFromInputStream(in));
 
             //parse JSON
-            sRes = parsJSON(json);
+//            sRes = parsJSON(json);
 
             //parse GSON
             sRes = parseGSON(json);
@@ -72,17 +73,40 @@ public class OpenLOLAPIClient {
         }
     }
 
-    private SummonerResponse parsJSON(JSONObject json) throws JSONException {
-        SummonerResponse sRes = new SummonerResponse();
-//        sRes.setId(json.getJSONObject("id").getInt("id"));
-        sRes.setId(json.getString("id"));
-        return sRes;
-    }
+//    private SummonerResponse parsJSON(JSONObject json) throws JSONException {
+//        SummonerResponse sRes = new SummonerResponse();
+////        sRes.setId(json.getJSONObject("id").getInt("id"));
+////        sRes.setId(json.getString("id"));
+//        return sRes;
+//    }
 
-    public SummonerResponse parseGSON(JSONObject json) {
+    public SummonerResponse parseGSON(JSONObject json) throws JSONException {
         Gson gson = new Gson();
-//        SummonerResponse sRes = gson.toJson("id");
-        return null;
+//        String result = gson.toJson(json);
+//        System.out.println(result);
+        System.out.println("JSON = " + json);
+
+//        String [] result = gson.fromJson(String.valueOf(json), String[].class );
+//        System.out.println("JSON2 = " + result);
+
+        SummonerResponse sRes = gson.fromJson(json.toString(), SummonerResponse.class);
+        System.out.println("ID = " + sRes.getId());
+        System.out.println("NAME = " + sRes.getName());
+        System.out.println("ProfileIcon = " + sRes.getProfileIconId());
+        System.out.println("RevisionDate = " + sRes.getRevisionDate());
+        System.out.println("SummonerLevel = " + sRes.getSummonerLevel());
+
+        return sRes;
+
+//        Gson gson = new GsonBuilder().registerTypeAdapter(SummonerResponse.class, "니인생").create();
+//        SummonerResponse sRes = gson.fromJson(String.valueOf(json), SummonerResponse.class);
+//        System.out.println(sRes.getId());
+//        System.out.println(sRes.getName());
+//        System.out.println(sRes.getProfileIconId());
+//        System.out.println(sRes.getRevisionDate());
+//        System.out.println(sRes.getSummonerLevel());
+//
+//        return sRes;
     }
 
 }

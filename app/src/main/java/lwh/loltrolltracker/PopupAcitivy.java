@@ -29,7 +29,7 @@ public class PopupAcitivy extends AppCompatActivity {
         setContentView(R.layout.popup);
         intent = getIntent();
         urlString = intent.getStringExtra("url");
-        sRes = new SummonerResponse();
+//        sRes = new SummonerResponse();
 
 //        TextView textView = (TextView)findViewById(R.id.textView);
 //        textView.setText(urlString);
