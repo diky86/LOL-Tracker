@@ -1,6 +1,5 @@
 package lwh.loltrolltracker;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,11 +25,6 @@ public class LttMainActivity extends AppCompatActivity {
         searchButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                getLOLId(v);
-//                Intent intent = new Intent(getApplicationContext(), PopupAcitivy.class);
-//                String urlString = summonerUrl + id + "?api_key=" + appKey;
-//                intent.putExtra("url", urlString);
-//                startActivity(intent);
                 getLOLId();
             }
         });
@@ -38,12 +32,11 @@ public class LttMainActivity extends AppCompatActivity {
 
     public void getLOLId() {
         id = editText.getText().toString();
-
         OpenLOLAPITask t = new OpenLOLAPITask();
 
         try {
             SummonerResponse sRes = t.execute(id).get();
-            System.out.println("ID = " + sRes.getId());
+//            System.out.println("ID = " + sRes.getId());
 //            tv.setText(sRes.getId());
         } catch (InterruptedException e) {
             e.printStackTrace();

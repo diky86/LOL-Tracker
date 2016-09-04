@@ -1,5 +1,7 @@
 package lwh.loltrolltracker;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 
 import org.json.JSONException;
@@ -10,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.SyncFailedException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -32,8 +35,8 @@ public class OpenLOLAPIClient {
             InputStream in = new BufferedInputStream(urlConnection.getInputStream());
             JSONObject json = new JSONObject(getStringFromInputStream(in));
 
-            //parse JSON
-            sRes = parsJSON(json);
+//            //parse JSON
+//            sRes = parsJSON(json);
 
             //parse GSON
             sRes = parseGSON(json);
@@ -72,17 +75,23 @@ public class OpenLOLAPIClient {
         }
     }
 
-    private SummonerResponse parsJSON(JSONObject json) throws JSONException {
-        SummonerResponse sRes = new SummonerResponse();
-//        sRes.setId(json.getJSONObject("id").getInt("id"));
-        sRes.setId(json.getString("id"));
-        return sRes;
-    }
+//    private SummonerResponse parsJSON(JSONObject json) throws JSONException {
+//        SummonerResponse sRes = new SummonerResponse();
+////        sRes.setId(json.getJSONObject("id").getInt("id"));
+//        sRes.setId(json.getString("id"));
+//        return sRes;
+//    }
 
     public SummonerResponse parseGSON(JSONObject json) {
         Gson gson = new Gson();
+        SummonerResponse sRes = gson.fromJson(json.toString(), SummonerResponse.class);
+        System.out.println("JSON = " + json);
+        System.out.println("sRes = " + sRes);
+//        Log.d("JSON", json.toString());
+//        Log.d("sRes", sRes.toString());
+
 //        SummonerResponse sRes = gson.toJson("id");
-        return null;
+        return sRes;
     }
 
 }
